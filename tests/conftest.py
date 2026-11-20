@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Page
 
-from config.setting import DEFAULT_TIMEOUT
+from config.setting import DEFAULT_TIMEOUT, BASE_URL
 from data.user_factory import UserFactory
 from pages.register_page import RegisterPage
 
@@ -9,11 +9,12 @@ from pages.register_page import RegisterPage
 @pytest.fixture(scope="session")
 def browser_context_args(browser_context_args):
     return {
-        **browser_context_args
+        **browser_context_args,
+        "base_url": BASE_URL,
         "viewport": {
             "width": 1920,
             "height": 1080,
-        }
+        },
     }
 
 @pytest.fixture

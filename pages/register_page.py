@@ -59,6 +59,8 @@ class RegisterPage(BasePage):
         self.click_register()
         return self
 
+    def should_be_registered(self, page: Page):
+        expect(page).toHaveUrl('/')
 
 
 
