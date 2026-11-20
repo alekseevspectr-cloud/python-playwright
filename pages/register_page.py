@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 
+from config.setting import DEFAULT_TIMEOUT
 from pages.base_page import BasePage
 
 
@@ -17,8 +18,8 @@ class RegisterPage(BasePage):
 
 
     def open_register_page(self):
-        self.open("/auth/registr")
-        expect(self.form).to_be_visible()
+        self.open("/auth/register")
+        expect(self.form).to_be_visible(timeout=DEFAULT_TIMEOUT)
         return self
 
 
@@ -59,8 +60,8 @@ class RegisterPage(BasePage):
         self.click_register()
         return self
 
-    def should_be_registered(self, page: Page):
-        expect(page).toHaveUrl('/')
+    def should_be_registered(self) -> None:
+        expect(self.page).to_have_url("/")
 
 
 
